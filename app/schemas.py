@@ -38,3 +38,8 @@ class recordResponse(RecordBase):
     
     class Config:
         from_attributes=True
+        
+        
+class LoginSchema(BaseModel):
+    email:EmailStr
+    password:str
