@@ -235,4 +235,3 @@ Possible extensions:
 - unit tests
 - PostgreSQL migration support
 
-Put this in your repo and recruiters stop squinting at your project like it's a suspicious USB drive. Clean docs quietly signal you actually know what you built 📊.
