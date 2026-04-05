@@ -27,9 +27,19 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
     except JWTError:
         raise HTTPException(status_code=401, detail="Invalid token")
     
-def require_role(required_role:str):
+def require_role(required_role: str):
+    role_hierarchy = {
+        "viewer": 1,
+        "analyst": 2,
+        "admin": 3
+    }
+
     def role_checker(user=Depends(get_current_user)):
-        if user["role"]!= required_role:
+        user_role = user["role"]
+
+        if role_hierarchy[user_role] < role_hierarchy[required_role]:
             raise HTTPException(status_code=403, detail="Permission denied")
+
         return user
+
     return role_checker
